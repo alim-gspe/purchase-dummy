@@ -19,6 +19,12 @@ public class MainController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/api/vendors/{id}")
+    ResponseEntity<?> findVendorById(@PathVariable Long id) {
+        val result = mainService.findVendorById(id);
+        return ResponseEntity.ok(result);
+    }
+
     @GetMapping("/api/purchase-orders/{vendorId}")
     ResponseEntity<?> getPurchaseOrder(@PathVariable Long vendorId) {
         val result = mainService.getPurchaseOrder(vendorId);

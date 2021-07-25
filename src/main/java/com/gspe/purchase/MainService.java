@@ -33,6 +33,17 @@ public class MainService {
         return result;
     }
 
+    public VendorDto findVendorById(Long id) {
+        VendorDto vendorDto = new VendorDto();
+        val vendor = vendorRepository.findById(id);
+        if (vendor.isPresent()) {
+            vendorDto.setId(vendor.get().getId());
+            vendorDto.setName(vendor.get().getName());
+            vendorDto.setVendorCode(vendor.get().getVendorCode());
+        }
+        return vendorDto;
+    }
+
     public List<PurchaseOrderDto> getPurchaseOrder(Long vendorId) {
         val result = dataMapper.purchaseOrderMap(purchaseOrderRepository.findByVendor_Id(vendorId));
         return result;
